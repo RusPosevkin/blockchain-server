@@ -330,14 +330,14 @@ module.exports = {
 
   /**************************************************************************
   *                                                                         *
-  * Lift the server on port 80.                                             *
+  * Lift the server on port 8000.                                           *
   * (if deploying behind a proxy, or to a PaaS like Heroku or Deis, you     *
   * probably don't need to set a port here, because it is oftentimes        *
   * handled for you automatically.  If you are not sure if you need to set  *
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
+   port: 8000,
 
 
 
