@@ -123,6 +123,7 @@ nbproject
 .vscode
 .node_history
 dump.rdb
+data
 
 npm-debug.log
 lib-cov
