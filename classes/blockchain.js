@@ -32,8 +32,8 @@ class Blockchain {
     /**
      * Get block (string) by its height
      */
-    getBlock(blockHeight) {
-        return db.get(blockHeight).then((value) => JSON.parse(value));
+    getBlock(height) {
+        return db.get(height).then((value) => JSON.parse(value));
     }
 
     /**
