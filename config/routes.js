@@ -43,7 +43,7 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  'get /block/:counter': { controller: 'block', action: 'get' },
+  'get /block/:height': { controller: 'block', action: 'get' },
   'post /block': { controller: 'block', action: 'post' },
   'post /message-signature/validate': { controller: 'message-signature/validate', action: 'post' },
 
