@@ -244,7 +244,7 @@ If block wasn't found:
 `GET`
 
 #### Endpoint 
-`http://localhost:8000/block`:[height]
+`http://localhost:8000/block`/[height]
 
 #### Request Example
 ```bash
