@@ -244,3 +244,4 @@ curl "http://localhost:8000/block/1"
 ```
 
 ### Testing Endpoints
+For testing endpoints you can also using different GUI tools. For example: [Postman](https://www.getpostman.com).
