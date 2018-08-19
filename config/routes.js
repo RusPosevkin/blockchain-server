@@ -44,6 +44,7 @@ module.exports.routes = {
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   'get /block/:height': { controller: 'block', action: 'get' },
+  'get /stars/hash:hash': { controller: 'stars', action: 'hash' },
   'post /block': { controller: 'block', action: 'post' },
   'post /message-signature/validate': { controller: 'message-signature/validate', action: 'post' },
 
