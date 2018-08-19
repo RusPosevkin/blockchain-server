@@ -1,7 +1,7 @@
 const SHA256 = require('crypto-js/sha256');
 const level = require('level');
 const Block = require('./block');
-const chainDB = './.data';
+const chainDB = './.data/blockchain';
 const db = level(chainDB);
 
 /**

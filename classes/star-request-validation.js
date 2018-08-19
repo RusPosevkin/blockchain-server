@@ -1,6 +1,6 @@
 const level = require('level');
 const bitcoinMessage = require('bitcoinjs-message');
-const chainDB = './.data';
+const chainDB = './.data/star';
 const db = level(chainDB);
 
 // 5 minutes
@@ -55,7 +55,7 @@ class StarRequestValidation {
             validationWindow: VALIDATION_WINDOW
         };
 
-        return db.put(address, dbValue).then(() => dbValue);
+        return db.put(address, JSON.stringify(dbValue)).then(() => dbValue);
     }
 
     /**
@@ -67,14 +67,14 @@ class StarRequestValidation {
                 const dbValue = JSON.parse(dbValueString);
                 const fiveMinutesInThePast = this.getFiveMinutesInThePast();
                 const isExpired = dbValue.requestTimeStamp < fiveMinutesInThePast;
-
+                let isValid = false;
                 if (isExpired) {
                     dbValue.validationWindow = 0;
                     dbValue.messageSignature = `Unfortunately, ${VALIDATION_WINDOW} seconds validation window was expired`;
                 } else {
                     // convert value to the seconds
                     dbValue.validationWindow = Math.floor((dbValue.requestTimeStamp - fiveMinutesInThePast) / 1000); 
-                    const isValid = bitcoinMessage.verify(dbValue.message, address, messageSignature) || false;
+                    isValid = bitcoinMessage.verify(dbValue.message, address, messageSignature);
 
                     if (isValid) {
                         dbValue.messageSignature = 'valid';

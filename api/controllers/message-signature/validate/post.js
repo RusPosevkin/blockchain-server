@@ -1,29 +1,26 @@
 module.exports = async function get (req, res) {
-    const fs = require('fs');
-    const bitcoin = require('bitcoinjs-lib');
-    const bitcoinMessage = require('bitcoinjs-message');
-
-    const address = req.param('address');
-    const signature = req.param('signature');
-    const VALIDATION_WINDOW = 193;
-
-    const data = fs.readFileSync(`data/${address}`).toString();
-    const messageSignature = data === signature ? 'valid' : 'incorrect';
-
-    const body = {
-        registerStar: true,
-        status: {
+    const StarRequestValidation = require('../../../../classes/star-request-validation');
+    const {
+        body: {
             address,
-            validationWindow: VALIDATION_WINDOW,
-            messageSignature
+            signature
         }
-    };
-    res.set({
-        'Content-Type': 'application/json',
-        'Charset': 'utf-8',
-        'Cache-Control': 'no-cache',
-        'Accept-Ranges': 'bytes',
-        'Connection': 'close'
-    });
-    return res.json(200, body);
+    } = req;
+
+    if (address && signature) {
+        StarRequestValidation.getInstance()
+            .validateAddressBySignature(address, signature)
+            .then((response) => res.json(response))
+            .catch((error) => {
+                return res.status(400).json({
+                    reason: 'Bad request',
+                    details: 'Validation was not done or you have incorrect signature'
+                });
+            });
+    } else {
+        res.status(400).json({
+            reason: 'Bad request',
+            details: 'You should send JSON that contains "address" and "signature" fields'
+        });
+    }
 }
