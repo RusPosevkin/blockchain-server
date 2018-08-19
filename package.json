@@ -23,7 +23,7 @@
     "@sailshq/eslint": "^4.19.3"
   },
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start": "sails lift",
     "test": "node tests/blockchain.js && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
