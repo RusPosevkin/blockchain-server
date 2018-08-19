@@ -11,6 +11,13 @@ Project is implement the star registry notarization web API.
 ## Node.js framework
 This project uses framework [Sails.js](https://sailsjs.com/) to serve the application.
 
+## Prerequisites 
+You should have installed [Node.js](https://nodejs.org/en/).
+Also Sails.js should be installed:
+```bash
+npm install sails -g
+``` 
+
 ## How to start
 1. Clone this repository or download as a zip file (in this case you should unpacked it) .
 
@@ -133,6 +140,14 @@ curl -X "POST" "http://localhost:8000/block" \
 }
 ```
 
+If there are any errors occured response contains an error reason. For example:
+```json
+{
+    "reason": "Bad request",
+    "details": "There are no validation request or it was expired"
+}
+``` 
+
 ### 4. Stars Lookup by Wallet Address
 #### Method
 `GET`
@@ -180,6 +195,10 @@ curl "http://localhost:8000/stars/address:1JhzgwjPp8xGswhfNHvoPmiANTe21r6Wq3"
     }
 ]
 ```
+If there are no any blocks for wallet address: 
+```json
+[]
+```
 
 ### 5. Star Lookup by Block Hash
 #### Method
@@ -212,6 +231,14 @@ curl "http://localhost:8000/stars/hash:d28fc1b0d032120673779f8eef84421ef3e9e0b3d
 }
 ```
 
+If block wasn't found: 
+```json
+{
+    "reason": "Bad request",
+    "details": "Block was not found"
+}
+```
+
 ### 6. Star Lookup by Block Height 
 #### Method
 `GET`
@@ -240,6 +267,14 @@ curl "http://localhost:8000/block/1"
             "storyDecoded": "Star example story"
         }
     }
+}
+```
+
+If block wasn't found: 
+```json
+{
+    "reason": "Bad request",
+    "details": "Block was not found"
 }
 ```
 
