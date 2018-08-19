@@ -20,7 +20,6 @@ module.exports = async function get (req, res) {
             .isAuthorized(address)
             .then((isAuthorized) => {
                 if (isAuthorized) {
-                    debugger;
                     const newBlock = new Block(body);
                     const story = newBlock.body.star.story.substring(0, STAR_STORY_BYTE_LENGTH);
                     newBlock.body.star.story = new Buffer(story).toString('hex');
