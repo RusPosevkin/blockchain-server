@@ -55,6 +55,8 @@ curl -X "POST" "http://localhost:8000/requestValidation" \
 #### Parameter `address`
 `address` is a bitcoin wallet address. For a testing purpose you can use [Electrum Bitcon Wallet](https://electrum.org/#home).
 
+![Electrum Bitcon Wallet Address](./docs/address.png "Electrum Bitcon Wallet Address")
+
 ### 2. Blockchain ID Message Signature Validation 
 #### Method
 `POST`
@@ -88,6 +90,9 @@ curl -X "POST" "http://localhost:8000/message-signature/validate" \
 
 #### Parameter `signature`
 You can get your `signature` parameter using [Electrum Bitcon Wallet](https://electrum.org/#home): `Tools` → `Sign/verify message`. Use `address` and `message` parameters that you got from `Blockchain ID Validation Request` endpoint response.
+[Electrum Bitcon Wallet](https://electrum.org/#home).
+
+![Message Signing using Electrum](./docs/signature.png "Message Signing using Electrum")
 
 ### 3. Star Registration
 #### Method
@@ -237,3 +242,5 @@ curl "http://localhost:8000/block/1"
     }
 }
 ```
+
+### Testing Endpoints
