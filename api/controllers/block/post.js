@@ -28,7 +28,6 @@ module.exports = async function get (req, res) {
                     Blockchain.getInstance()
                         .then((instance) => instance.addBlock(newBlock))
                         .then((instance) => instance.getBlockHeight())
-                        // .then((height) => this.getBlockCore(height - 1, res));
                         .then((height) => {
                             starBlockchain.getBlockByHeight(height-1, res)
                                 .then((block) => res.json(block))

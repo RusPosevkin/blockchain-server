@@ -124,6 +124,7 @@ nbproject
 .node_history
 dump.rdb
 data
+.data
 
 npm-debug.log
 lib-cov
