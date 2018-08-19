@@ -40,7 +40,8 @@ class StarRequestValidation {
                 const isExpired = dbValue.requestTimeStamp < this.getFiveMinutesInThePast();
 
                 return !isExpired && dbValue.messageSignature === 'valid';
-            });
+            })
+            .catch(() => false);
     }
 
     /**

@@ -30,7 +30,6 @@ module.exports = async function get (req, res) {
                         .then((height) => {
                             starBlockchain.getBlockByHeight(height-1, res)
                                 .then((block) => {
-                                    // this endpoint shouldn't return 'storyDecoded' property in the response 
                                     if (block && block.body && block.body.star && block.body.star.storyDecoded) {
                                         delete block.body.star.storyDecoded;
                                     }
