@@ -29,7 +29,13 @@ module.exports = async function get (req, res) {
                         .then((instance) => instance.getBlockHeight())
                         .then((height) => {
                             starBlockchain.getBlockByHeight(height-1, res)
-                                .then((block) => res.json(block))
+                                .then((block) => {
+                                    // this endpoint shouldn't return 'storyDecoded' property in the response 
+                                    if (block && block.body && block.body.star && block.body.star.storyDecoded) {
+                                        delete block.body.star.storyDecoded;
+                                    }
+                                    return res.json(block);
+                                })
                                 .catch(() => {
                                     return res.status(400).json({
                                         reason: 'Bad request',
