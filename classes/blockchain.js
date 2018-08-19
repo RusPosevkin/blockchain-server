@@ -1,7 +1,7 @@
 const SHA256 = require('crypto-js/sha256');
 const level = require('level');
 const Block = require('./block');
-const chainDB = '../.data';
+const chainDB = './.data';
 const db = level(chainDB);
 
 /**
@@ -12,6 +12,7 @@ class Blockchain {
     /**
      * Return existed class instance or instantiate class by first block 
      * if it was called for the first time
+     * @static
      */
     static getInstance() {
         if (!Blockchain.instance) {

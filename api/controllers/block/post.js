@@ -1,17 +1,39 @@
 module.exports = async function get (req, res) {
-    const body = {
-        hash: "ffaffeb2330a12397acc069791323783ef1a1c8aab17ccf2d6788cdab0360b90",
-        height: 1,
-        body: "Testing block with test string data",
-        time: "1531764891",
-        previousBlockHash: "49cce61ec3e6ae664514d5fa5722d86069cf981318fc303750ce66032d0acff3"
-    };
-    res.set({
-        'Content-Type': 'application/json',
-        'Charset': 'utf-8',
-        'Cache-Control': 'no-cache',
-        'Accept-Ranges': 'bytes',
-        'Connection': 'close'
-    });
-    return res.json(200, body);
+    const StarRequestValidation = require('../../../classes/star-request-validation');
+    const {
+        body,
+        body: {
+            address,
+            star
+        } = {}
+    } = req;
+    // only 500 bites of star story should be saved
+    const STAR_STORY_BYTE_LENGTH = 500;
+
+    if (address && star) {
+        StarRequestValidation.getInstance()
+            .isAuthorized(address)
+            .then((isAuthorized) => {
+                if (isAuthorized) {
+                    const newBlock = new Block(body);
+                    const story = newBlock.body.star.story.substring(0, STAR_STORY_BYTE_LENGTH);
+                    newBlock.body.star.story = new Buffer(story).toString('hex');
+
+                    Blockchain.getInstance()
+                        .then((instance) => instance.addBlock(newBlock))
+                        .then((instance) => instance.getBlockHeight())
+                        .then((height) => this.getBlockCore(height - 1, res));
+                } else {
+                    res.status(400).json({
+                        reason: 'Bad request',
+                        details: 'There are no validation request or it was expired'
+                    });
+                }
+            });
+    } else {
+        res.status(400).json({
+            reason: 'Bad request',
+            details: 'You should send JSON that contains "star" and "address" fields'
+        });
+    }
 }
