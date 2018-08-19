@@ -48,12 +48,12 @@ class StarRequestValidation {
      */
     requestValidation(address) {
         const timestamp = Date.now();
-        const dbValue = JSON.stringify({
+        const dbValue = {
             address: address,
             requestTimeStamp: timestamp,
             message: `${address}:${timestamp}:starRegistry`,
             validationWindow: VALIDATION_WINDOW
-        });
+        };
 
         return db.put(address, dbValue).then(() => dbValue);
     }

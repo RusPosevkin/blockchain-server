@@ -47,6 +47,7 @@ module.exports.routes = {
   'get /stars/hash:hash': { controller: 'stars', action: 'hash' },
   'get /stars/address:address': { controller: 'stars', action: 'address' },
   'post /block': { controller: 'block', action: 'post' },
+  'post /requestValidation': { controller: 'requestValidation', action: 'post' },
   'post /message-signature/validate': { controller: 'message-signature/validate', action: 'post' },
 
 
