@@ -11,7 +11,7 @@ module.exports = async function get (req, res) {
         StarRequestValidation.getInstance()
             .validateAddressBySignature(address, signature)
             .then((response) => res.json(response))
-            .catch((error) => {
+            .catch(() => {
                 return res.status(400).json({
                     reason: 'Bad request',
                     details: 'Validation was not done or you have incorrect signature'
