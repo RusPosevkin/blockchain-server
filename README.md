@@ -140,7 +140,14 @@ curl -X "POST" "http://localhost:8000/block" \
 }
 ```
 
-If there are any errors occured response contains an error reason. For example:
+#### Required fields and limitations
+* `body` should contain `address` and `star` fields. 
+* `star` field should include non-empty `dec`, `ra` and `story` fields. 
+* `story` field should contain only ASCII symbols, maximum length is 500 bytes.
+* And, of course, should be a non-expired validation request before starting star registration.
+
+
+If there are any errors occured response contains an error reason in `details` field. For example:
 ```json
 {
     "reason": "Bad request",
