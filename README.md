@@ -287,3 +287,6 @@ If block wasn't found:
 
 ### Testing Endpoints
 For testing endpoints you can also using different GUI tools. For example: [Postman](https://www.getpostman.com).
+
+## License
+[MIT](LICENSE)
