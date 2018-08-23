@@ -97,7 +97,6 @@ curl -X "POST" "http://localhost:8000/message-signature/validate" \
 
 #### Parameter `signature`
 You can get your `signature` parameter using [Electrum Bitcon Wallet](https://electrum.org/#home): `Tools` → `Sign/verify message`. Use `address` and `message` parameters that you got from `Blockchain ID Validation Request` endpoint response.
-[Electrum Bitcon Wallet](https://electrum.org/#home).
 
 ![Message Signing using Electrum](./docs/signature.png "Message Signing using Electrum")
 
